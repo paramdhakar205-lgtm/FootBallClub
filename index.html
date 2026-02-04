@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">⚽ Football Platform</h1>
+                <nav class="nav">
+                    <button class="nav-btn active" data-section="players">Players</button>
+                    <button class="nav-btn" data-section="teams">Teams</button>
+                    <button class="nav-btn" data-section="builder">Team Builder</button>
+                    <button class="nav-btn" data-section="quiz">Quiz</button>
+                </nav>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Players Section -->
+            <section id="players" class="section active">
+                <h2>Player Database</h2>
+                
+                <!-- Search and Filter -->
+                <div class="search-filter-bar">
+                    <input type="text" id="playerSearch" class="search-input" placeholder="Search players by name...">
+                    
+                    <div class="filters">
+                        <select id="positionFilter" class="filter-select">
+                            <option value="">All Positions</option>
+                            <option value="GK">Goalkeeper</option>
+                            <option value="DEF">Defender</option>
+                            <option value="MID">Midfielder</option>
+                            <option value="FWD">Forward</option>
+                        </select>
+                        
+                        <select id="leagueFilter" class="filter-select">
+                            <option value="">All Leagues</option>
+                            <option value="Premier League">Premier League</option>
+                            <option value="La Liga">La Liga</option>
+                            <option value="Serie A">Serie A</option>
+                            <option value="Bundesliga">Bundesliga</option>
+                            <option value="Ligue 1">Ligue 1</option>
+                        </select>
+                        
+                        <select id="nationalityFilter" class="filter-select">
+                            <option value="">All Countries</option>
+                            <option value="Argentina">Argentina</option>
+                            <option value="Brazil">Brazil</option>
+                            <option value="England">England</option>
+                            <option value="France">France</option>
+                            <option value="Germany">Germany</option>
+                            <option value="Portugal">Portugal</option>
+                            <option value="Spain">Spain</option>
+                        </select>
+                        
+                        <button id="clearFilters" class="btn-secondary">Clear Filters</button>
+                    </div>
+                </div>
+                
+                <!-- Players Grid -->
+                <div id="playersGrid" class="players-grid"></div>
+            </section>
+
+            <!-- Teams Section -->
+            <section id="teams" class="section">
+                <h2>Teams & Clubs</h2>
+                
+                <div class="search-filter-bar">
+                    <input type="text" id="teamSearch" class="search-input" placeholder="Search teams...">
+                    <select id="teamLeagueFilter" class="filter-select">
+                        <option value="">All Leagues</option>
+                        <option value="Premier League">Premier League</option>
+                        <option value="La Liga">La Liga</option>
+                        <option value="Serie A">Serie A</option>
+                        <option value="Bundesliga">Bundesliga</option>
+                        <option value="Ligue 1">Ligue 1</option>
+                    </select>
+                </div>
+                
+                <div id="teamsGrid" class="teams-grid"></div>
+            </section>
+
+            <!-- Team Builder Section -->
+            <section id="builder" class="section">
+                <h2>Team Builder</h2>
+                
+                <div class="builder-container">
+                    <div class="builder-sidebar">
+                        <h3>Formation</h3>
+                        <select id="formationSelect" class="filter-select">
+                            <option value="4-4-2">4-4-2</option>
+                            <option value="4-3-3">4-3-3</option>
+                            <option value="3-5-2">3-5-2</option>
+                            <option value="4-2-3-1">4-2-3-1</option>
+                        </select>
+                        
+                        <h3>Available Players</h3>
+                        <div id="availablePlayers" class="available-players"></div>
+                        
+                        <button id="saveFormation" class="btn-primary">Save Formation</button>
+                        <button id="clearFormation" class="btn-secondary">Clear All</button>
+                    </div>
+                    
+                    <div class="pitch-container">
+                        <div id="pitch" class="pitch">
+                            <!-- Player positions will be dynamically added here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section id="quiz" class="section">
+                <h2>Football Quiz</h2>
+                
+                <div class="quiz-container">
+                    <div id="quizStart" class="quiz-start">
+                        <h3>Test Your Football Knowledge!</h3>
+                        <p>Answer multiple choice questions about football history, players, and leagues.</p>
+                        <select id="quizCategory" class="filter-select">
+                            <option value="general">General Knowledge</option>
+                            <option value="worldcup">World Cup</option>
+                            <option value="players">Famous Players</option>
+                            <option value="clubs">Clubs & Teams</option>
+                        </select>
+                        <button id="startQuiz" class="btn-primary">Start Quiz</button>
+                    </div>
+                    
+                    <div id="quizGame" class="quiz-game hidden">
+                        <div class="quiz-header">
+                            <div class="quiz-progress">
+                                Question <span id="currentQuestion">1</span> of <span id="totalQuestions">10</span>
+                            </div>
+                            <div class="quiz-score">
+                                Score: <span id="currentScore">0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <h3 id="questionText"></h3>
+                            <div id="answerOptions" class="answer-options"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="quizResults" class="quiz-results hidden">
+                        <h3>Quiz Complete!</h3>
+                        <div class="results-score">
+                            <p>Your Score: <span id="finalScore"></span> out of <span id="finalTotal"></span></p>
+                            <p id="scoreMessage"></p>
+                        </div>
+                        <button id="restartQuiz" class="btn-primary">Try Again</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Player Detail Modal -->
+    <div id="playerModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="playerDetails"></div>
+        </div>
+    </div>
+
+    <!-- Team Detail Modal -->
+    <div id="teamModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="teamDetails"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Football Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
